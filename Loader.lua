@@ -151,21 +151,7 @@ function ShadowDarkness.Window.new(title)
             self.CurrentTab = name
             tab.Container.Visible = true
         end
-        -- AutoRightScroll.lua
-       local function createElement(t,p,pr) local e=Instance.new(t) for k,v in pairs(pr)do e[k]=v end e.Parent=p return e end
-       local right=createElement("ScrollingFrame",tab.Container,{
-           Name="RightColumn",
-           BackgroundTransparency=1,
-           Position=UDim2.new(0.5,5,0,0),
-           Size=UDim2.new(0.5,-15,1,0),
-           ScrollBarThickness=4,
-           CanvasSize=UDim2.new(0,0,0,0)
-        })
-        local layout=createElement("UIListLayout",right,{Padding=UDim.new(0,10),SortOrder=Enum.SortOrder.LayoutOrder})
-            layout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
-            right.CanvasSize=UDim2.new(0,0,0,layout.AbsoluteContentSize.Y+10)
-        end)
-        return right
+        
         function tab:AddSection(side, dividerText)
             local section = {}
             local parent = side == "right" and tab.RightColumn or tab.LeftColumn
