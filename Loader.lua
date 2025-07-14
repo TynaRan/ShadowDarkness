@@ -14,7 +14,7 @@ ShadowDarkness.Theme = {
     Section = Color3.fromRGB(35, 35, 35),
     Element = Color3.fromRGB(40, 40, 40),
     Text = Color3.fromRGB(220, 220, 220),
-    Divider = Color3.fromRGB(60, 60, 60)
+    Divider = Color3.fromRGB(255, 255, 255)
 }
 
 local function createElement(type, parent, props)
@@ -54,7 +54,7 @@ function ShadowDarkness.Window.new(title)
         BackgroundColor3 = ShadowDarkness.Theme.Divider,  
         BorderSizePixel = 0,  
         Position = UDim2.new(0, 0, 0, 30),  
-        Size = UDim2.new(1, 0, 0, 1)  
+        Size = UDim2.new(1, 0, 0, 0.1)  
     })
 
     createElement("TextLabel", self.TopBar, {
