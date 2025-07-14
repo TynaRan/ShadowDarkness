@@ -67,7 +67,7 @@ function ShadowDarkness.Window.new(title)
         BackgroundTransparency = 1,
         TextXAlignment = Enum.TextXAlignment.Left
     })
-
+    
     self.TabContainer = createElement("Frame", self.MainFrame, {
         Name = "TabContainer",
         BackgroundTransparency = 1,
@@ -80,6 +80,24 @@ function ShadowDarkness.Window.new(title)
         Padding = UDim.new(0, 10)
     })
 
+    local toggleUI = createElement("TextButton", self.ScreenGui, {
+	    Name = "ToggleUI",
+	    Position = UDim2.new(0, 10, 0, 40), 
+	    Size = UDim2.new(0, 120, 0, 25),
+	    BackgroundColor3 = ShadowDarkness.Theme.Element,
+	    Font = Enum.Font.Code,
+	    Text = "Toggle UI",
+	    TextSize = 12,
+	    TextColor3 = ShadowDarkness.Theme.Text,
+	    BorderSizePixel = 0,
+	    ZIndex = 999
+    })
+
+    local uiVisible = true
+    toggleUI.MouseButton1Click:Connect(function()
+	    uiVisible = not uiVisible
+	    self.MainFrame.Visible = uiVisible
+    end)
 
     self.ContentContainer = createElement("Frame", self.MainFrame, {
         Name = "ContentContainer",
