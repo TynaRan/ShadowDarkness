@@ -7,7 +7,7 @@ local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 local TweenService = game:GetService("TweenService")
 
-ShadowDarkness.AccentColor = Color3.fromRGB(0, 120, 215)
+ShadowDarkness.AccentColor = Color3.fromRGB(255, 255, 255)
 ShadowDarkness.Theme = {
     Background = Color3.fromRGB(30, 30, 30),
     TopBar = Color3.fromRGB(25, 25, 25),
@@ -199,7 +199,8 @@ function ShadowDarkness.Window.new(title)
                     Text = text,
                     TextColor3 = ShadowDarkness.Theme.Text,
                     TextSize = 12,
-                    BorderSizePixel = 0
+                    BorderSizePixel = 0,
+                    TextXAlignment = Enum.TextXAlignment.Left
                 })
                 button.MouseButton1Click:Connect(function()
                     if callback then callback() end
@@ -222,7 +223,8 @@ function ShadowDarkness.Window.new(title)
                     Text = text,
                     TextColor3 = ShadowDarkness.Theme.Text,
                     TextSize = 12,
-                    BackgroundTransparency = 1
+                    BackgroundTransparency = 1,
+                    TextXAlignment = Enum.TextXAlignment.Left
                 })
                 local box = createElement("TextBox", frame, {
                     Name = "Box",
@@ -257,7 +259,8 @@ function ShadowDarkness.Window.new(title)
                     Text = text,
                     TextColor3 = ShadowDarkness.Theme.Text,
                     TextSize = 12,
-                    BackgroundTransparency = 1
+                    BackgroundTransparency = 1,
+                    TextXAlignment = Enum.TextXAlignment.Left
                 })
                 local button = createElement("TextButton", frame, {
                     Name = "Button",
@@ -273,7 +276,7 @@ function ShadowDarkness.Window.new(title)
                 local value = default
                 button.MouseButton1Click:Connect(function()
                     value = not value
-                    button.BackgroundColor3 = value and ShadowDarkness.AccentColor or Color3.fromRGB(60, 60, 60)
+                    button.BackgroundColor3 = value and ShadowDarkness.AccentColor or Color3.fromRGB(60, 60 ,60)
                     if callback then callback(value) end
                 end)
                 return frame
