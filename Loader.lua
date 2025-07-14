@@ -53,7 +53,7 @@ function ShadowDarkness.Window.new(title)
         Name = "Divider",  
         BackgroundColor3 = ShadowDarkness.Theme.Divider,  
         BorderSizePixel = 0,  
-        Position = UDim2.new(0, 0, 0, 30),  
+        Position = UDim2.new(0, 0, 0, 25),  
         Size = UDim2.new(1, 0, 0, 1)  
     })
 
