@@ -104,32 +104,39 @@ function ShadowDarkness.Window.new(title)
             Visible = false
         })
 
-        tab.LeftColumn = createElement("ScrollingFrame", tab.Container, {
-            Name = "LeftColumn",
-            BackgroundTransparency = 1,
-            Position = UDim2.new(0, 10, 0, 0),
-            Size = UDim2.new(0.5, -15, 1, 0),
-            CanvasSize = UDim2.new(0, 0, 0, 0),
-            ScrollBarThickness = 4
-        })
+        
+    tab.LeftColumn = createElement("ScrollingFrame", tab.Container, {
+        Name               = "LeftColumn",
+        BackgroundTransparency = 1,
+        Position           = UDim2.new(0, 10, 0, 0),
+        Size               = UDim2.new(0.5, -15, 1, 0),
+        ScrollBarThickness = 4,
+        CanvasSize         = UDim2.new(0, 0, 0, 0)
+    })
+    tab.LeftLayout = createElement("UIListLayout", tab.LeftColumn, {
+        Padding   = UDim.new(0, 10),
+        SortOrder = Enum.SortOrder.LayoutOrder
+    })
+    tab.LeftLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+        tab.LeftColumn.CanvasSize = UDim2.new(0, 0, 0, tab.LeftLayout.AbsoluteContentSize.Y + 10)
+    })
 
-        tab.RightColumn = createElement("ScrollingFrame", tab.Container, {
-            Name = "RightColumn",
-            BackgroundTransparency = 1,
-            Position = UDim2.new(0.5, 5, 0, 0),
-            Size = UDim2.new(0.5, -15, 1, 0),
-            CanvasSize = UDim2.new(0, 0, 0, 0),
-            ScrollBarThickness = 4
-        })
-
-        tab.LeftLayout = createElement("UIListLayout", tab.LeftColumn, {
-            Padding = UDim.new(0, 10)
-        })
-
-        tab.RightLayout = createElement("UIListLayout", tab.RightColumn, {
-            Padding = UDim.new(0, 10)
-        })
-
+    
+    tab.RightColumn = createElement("ScrollingFrame", tab.Container, {
+        Name               = "RightColumn",
+        BackgroundTransparency = 1,
+        Position           = UDim2.new(0.5, 5, 0, 0),
+        Size               = UDim2.new(0.5, -15, 1, 0),
+        ScrollBarThickness = 4,
+        CanvasSize         = UDim2.new(0, 0, 0, 0)
+    })
+    tab.RightLayout = createElement("UIListLayout", tab.RightColumn, {
+        Padding   = UDim.new(0, 10),
+        SortOrder = Enum.SortOrder.LayoutOrder
+    })
+    tab.RightLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+        tab.RightColumn.CanvasSize = UDim2.new(0, 0, 0, tab.RightLayout.AbsoluteContentSize.Y + 10)
+    )
         tab.Button.MouseButton1Click:Connect(function()
             for _, otherTab in pairs(self.Tabs) do
                 otherTab.Container.Visible = false
