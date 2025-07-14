@@ -1,5 +1,6 @@
 -- ShadowDarkness UI Library
 -- GitHub: https://github.com/TynaRan/ShadowDarkness
+-- By TynaRan (Discord:Bad Darkness)
 --------------------------------------------------------------------------
 
 local ShadowDarkness = {}
@@ -38,17 +39,16 @@ function ShadowDarkness.Window.new(title)
         Name = "MainFrame",
         BackgroundColor3 = ShadowDarkness.Theme.Background,
         Position = UDim2.new(0.3, 0, 0.3, 0),
-        Size = UDim2.new(0, 550, 0, 685),
+        Size = UDim2.new(0, 550, 0, 750),
         BorderSizePixel = 0
     })
 
     self.TopBar = createElement("Frame", self.MainFrame, {
         Name = "TopBar",
         BackgroundColor3 = ShadowDarkness.Theme.TopBar,
-        BackgroundTransparency = 1,
-        Size = UDim2.new(1, 0, 0, 30)
+        Size = UDim2.new(1, 0, 0, 30),
+        BorderSizePixel = 0
     })
-
     self.divider = createElement("Frame", self.MainFrame, {  
         Name = "Divider",  
         BackgroundColor3 = ShadowDarkness.Theme.Divider,  
@@ -56,7 +56,6 @@ function ShadowDarkness.Window.new(title)
         Position = UDim2.new(0, 0, 0, 25),  
         Size = UDim2.new(1, 0, 0, 1)  
     })
-
     createElement("TextLabel", self.TopBar, {
         Name = "Title",
         Position = UDim2.new(0, 10, 0, 0),
@@ -75,6 +74,12 @@ function ShadowDarkness.Window.new(title)
         Position = UDim2.new(0, 0, 0, 30),
         Size = UDim2.new(1, 0, 0, 30)
     })
+    createElement("UIListLayout", self.TabContainer, {
+        FillDirection = Enum.FillDirection.Horizontal,
+        SortOrder = Enum.SortOrder.LayoutOrder,
+        Padding = UDim.new(0, 10)
+    })
+
 
     self.ContentContainer = createElement("Frame", self.MainFrame, {
         Name = "ContentContainer",
@@ -104,39 +109,32 @@ function ShadowDarkness.Window.new(title)
             Visible = false
         })
 
-        
-    tab.LeftColumn = createElement("ScrollingFrame", tab.Container, {
-        Name               = "LeftColumn",
-        BackgroundTransparency = 1,
-        Position           = UDim2.new(0, 10, 0, 0),
-        Size               = UDim2.new(0.5, -15, 1, 0),
-        ScrollBarThickness = 4,
-        CanvasSize         = UDim2.new(0, 0, 0, 0)
-    })
-    tab.LeftLayout = createElement("UIListLayout", tab.LeftColumn, {
-        Padding   = UDim.new(0, 10),
-        SortOrder = Enum.SortOrder.LayoutOrder
-    })
-    tab.LeftLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
-        tab.LeftColumn.CanvasSize = UDim2.new(0, 0, 0, tab.LeftLayout.AbsoluteContentSize.Y + 10)
-    })
+        tab.LeftColumn = createElement("ScrollingFrame", tab.Container, {
+            Name = "LeftColumn",
+            BackgroundTransparency = 1,
+            Position = UDim2.new(0, 10, 0, 0),
+            Size = UDim2.new(0.5, -15, 1, 0),
+            CanvasSize = UDim2.new(0, 0, 0, 0),
+            ScrollBarThickness = 4
+        })
 
-    
-    tab.RightColumn = createElement("ScrollingFrame", tab.Container, {
-        Name               = "RightColumn",
-        BackgroundTransparency = 1,
-        Position           = UDim2.new(0.5, 5, 0, 0),
-        Size               = UDim2.new(0.5, -15, 1, 0),
-        ScrollBarThickness = 4,
-        CanvasSize         = UDim2.new(0, 0, 0, 0)
-    })
-    tab.RightLayout = createElement("UIListLayout", tab.RightColumn, {
-        Padding   = UDim.new(0, 10),
-        SortOrder = Enum.SortOrder.LayoutOrder
-    })
-    tab.RightLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
-        tab.RightColumn.CanvasSize = UDim2.new(0, 0, 0, tab.RightLayout.AbsoluteContentSize.Y + 10)
-    )
+        tab.RightColumn = createElement("ScrollingFrame", tab.Container, {
+            Name = "RightColumn",
+            BackgroundTransparency = 1,
+            Position = UDim2.new(0.5, 5, 0, 0),
+            Size = UDim2.new(0.5, -15, 1, 0),
+            CanvasSize = UDim2.new(0, 0, 0, 0),
+            ScrollBarThickness = 4
+        })
+
+        tab.LeftLayout = createElement("UIListLayout", tab.LeftColumn, {
+            Padding = UDim.new(0, 10)
+        })
+
+        tab.RightLayout = createElement("UIListLayout", tab.RightColumn, {
+            Padding = UDim.new(0, 10)
+        })
+
         tab.Button.MouseButton1Click:Connect(function()
             for _, otherTab in pairs(self.Tabs) do
                 otherTab.Container.Visible = false
@@ -151,7 +149,7 @@ function ShadowDarkness.Window.new(title)
             self.CurrentTab = name
             tab.Container.Visible = true
         end
-        
+
         function tab:AddSection(side, dividerText)
             local section = {}
             local parent = side == "right" and tab.RightColumn or tab.LeftColumn
@@ -292,7 +290,7 @@ function ShadowDarkness.Window.new(title)
                 local value = default
                 button.MouseButton1Click:Connect(function()
                     value = not value
-                    button.BackgroundColor3 = value and ShadowDarkness.AccentColor or Color3.fromRGB(60, 60 ,60)
+                    button.BackgroundColor3 = value and ShadowDarkness.AccentColor or Color3.fromRGB(60, 60, 60)
                     if callback then callback(value) end
                 end)
                 return frame
