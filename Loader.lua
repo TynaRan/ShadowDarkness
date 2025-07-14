@@ -1,5 +1,5 @@
 -- ShadowDarkness UI Library
--- GitHub: https://github.com/ShadowDarkness/ShadowDarkness-UI-Library
+-- GitHub: https://github.com/TynaRan/ShadowDarkness
 --------------------------------------------------------------------------
 
 local ShadowDarkness = {}
@@ -38,7 +38,7 @@ function ShadowDarkness.Window.new(title)
         Name = "MainFrame",
         BackgroundColor3 = ShadowDarkness.Theme.Background,
         Position = UDim2.new(0.3, 0, 0.3, 0),
-        Size = UDim2.new(0, 550, 0, 500)
+        Size = UDim2.new(0, 550, 0, 685)
     })
 
     self.TopBar = createElement("Frame", self.MainFrame, {
