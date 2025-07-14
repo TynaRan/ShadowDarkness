@@ -54,7 +54,7 @@ function ShadowDarkness.Window.new(title)
         BackgroundColor3 = ShadowDarkness.Theme.Divider,  
         BorderSizePixel = 0,  
         Position = UDim2.new(0, 0, 0, 30),  
-        Size = UDim2.new(1, 0, 0, 0.1)  
+        Size = UDim2.new(1, 0, 0, 1)  
     })
 
     createElement("TextLabel", self.TopBar, {
