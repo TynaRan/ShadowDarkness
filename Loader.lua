@@ -38,7 +38,8 @@ function ShadowDarkness.Window.new(title)
         Name = "MainFrame",
         BackgroundColor3 = ShadowDarkness.Theme.Background,
         Position = UDim2.new(0.3, 0, 0.3, 0),
-        Size = UDim2.new(0, 550, 0, 685)
+        Size = UDim2.new(0, 550, 0, 685),
+        BorderSizePixel = 0
     })
 
     self.TopBar = createElement("Frame", self.MainFrame, {
@@ -46,6 +47,14 @@ function ShadowDarkness.Window.new(title)
         BackgroundColor3 = ShadowDarkness.Theme.TopBar,
         BackgroundTransparency = 1,
         Size = UDim2.new(1, 0, 0, 30)
+    })
+
+    self.divider = createElement("Frame", self.MainFrame, {  
+        Name = "Divider",  
+        BackgroundColor3 = ShadowDarkness.Theme.Divider,  
+        BorderSizePixel = 0,  
+        Position = UDim2.new(0, 0, 0, 30),  
+        Size = UDim2.new(1, 0, 0, 1)  
     })
 
     createElement("TextLabel", self.TopBar, {
