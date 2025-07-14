@@ -44,6 +44,7 @@ function ShadowDarkness.Window.new(title)
     self.TopBar = createElement("Frame", self.MainFrame, {
         Name = "TopBar",
         BackgroundColor3 = ShadowDarkness.Theme.TopBar,
+        BackgroundTransparency = 1,
         Size = UDim2.new(1, 0, 0, 30)
     })
 
