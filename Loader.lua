@@ -1,9 +1,14 @@
-local CartoWare = {}
+-- ShadowDarkness UI Library
+-- GitHub: https://github.com/ShadowDarkness/ShadowDarkness-UI-Library
+--------------------------------------------------------------------------
+
+local ShadowDarkness = {}
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
+local TweenService = game:GetService("TweenService")
 
-CartoWare.AccentColor = Color3.fromRGB(0, 120, 215)
-CartoWare.Theme = {
+ShadowDarkness.AccentColor = Color3.fromRGB(0, 120, 215)
+ShadowDarkness.Theme = {
     Background = Color3.fromRGB(30, 30, 30),
     TopBar = Color3.fromRGB(25, 25, 25),
     Section = Color3.fromRGB(35, 35, 35),
@@ -21,24 +26,24 @@ local function createElement(type, parent, props)
     return element
 end
 
-CartoWare.Window = {}
-function CartoWare.Window.new(title)
+ShadowDarkness.Window = {}
+function ShadowDarkness.Window.new(title)
     local self = {}
 
     self.ScreenGui = createElement("ScreenGui", game.CoreGui, {
-        Name = "CartoWareUI"
+        Name = "ShadowDarknessUI"
     })
 
     self.MainFrame = createElement("Frame", self.ScreenGui, {
         Name = "MainFrame",
-        BackgroundColor3 = CartoWare.Theme.Background,
+        BackgroundColor3 = ShadowDarkness.Theme.Background,
         Position = UDim2.new(0.3, 0, 0.3, 0),
         Size = UDim2.new(0, 550, 0, 500)
     })
 
     self.TopBar = createElement("Frame", self.MainFrame, {
         Name = "TopBar",
-        BackgroundColor3 = CartoWare.Theme.TopBar,
+        BackgroundColor3 = ShadowDarkness.Theme.TopBar,
         Size = UDim2.new(1, 0, 0, 30)
     })
 
@@ -47,8 +52,8 @@ function CartoWare.Window.new(title)
         Position = UDim2.new(0, 10, 0, 0),
         Size = UDim2.new(0, 200, 1, 0),
         Font = Enum.Font.Code,
-        Text = title or "CartoWare",
-        TextColor3 = CartoWare.Theme.Text,
+        Text = title or "ShadowDarkness",
+        TextColor3 = ShadowDarkness.Theme.Text,
         TextSize = 14,
         BackgroundTransparency = 1,
         TextXAlignment = Enum.TextXAlignment.Left
@@ -73,11 +78,11 @@ function CartoWare.Window.new(title)
 
         tab.Button = createElement("TextButton", self.TabContainer, {
             Name = name,
-            BackgroundColor3 = CartoWare.Theme.TopBar,
+            BackgroundColor3 = ShadowDarkness.Theme.TopBar,
             Size = UDim2.new(0, 100, 1, 0),
             Font = Enum.Font.Code,
             Text = name,
-            TextColor3 = CartoWare.Theme.Text,
+            TextColor3 = ShadowDarkness.Theme.Text,
             TextSize = 12,
             BorderSizePixel = 0
         })
@@ -137,7 +142,7 @@ function CartoWare.Window.new(title)
 
             section.Frame = createElement("Frame", parent, {
                 Name = "Section",
-                BackgroundColor3 = CartoWare.Theme.Section,
+                BackgroundColor3 = ShadowDarkness.Theme.Section,
                 Size = UDim2.new(1, 0, 0, 0),
                 BorderSizePixel = 0
             })
@@ -159,7 +164,7 @@ function CartoWare.Window.new(title)
                     Size = UDim2.new(1, 0, 0, 20),
                     Font = Enum.Font.Code,
                     Text = dividerText,
-                    TextColor3 = CartoWare.Theme.Text,
+                    TextColor3 = ShadowDarkness.Theme.Text,
                     TextSize = 12,
                     TextXAlignment = Enum.TextXAlignment.Left
                 })
@@ -178,7 +183,7 @@ function CartoWare.Window.new(title)
                     Size = UDim2.new(1, 0, 0, 20),
                     Font = Enum.Font.Code,
                     Text = text,
-                    TextColor3 = CartoWare.Theme.Text,
+                    TextColor3 = ShadowDarkness.Theme.Text,
                     TextSize = 12,
                     TextXAlignment = Enum.TextXAlignment.Left
                 })
@@ -187,11 +192,11 @@ function CartoWare.Window.new(title)
             function section:AddButton(text, callback)
                 local button = createElement("TextButton", section.Container, {
                     Name = "Button",
-                    BackgroundColor3 = CartoWare.Theme.Element,
+                    BackgroundColor3 = ShadowDarkness.Theme.Element,
                     Size = UDim2.new(1, 0, 0, 25),
                     Font = Enum.Font.Code,
                     Text = text,
-                    TextColor3 = CartoWare.Theme.Text,
+                    TextColor3 = ShadowDarkness.Theme.Text,
                     TextSize = 12,
                     BorderSizePixel = 0
                 })
@@ -204,7 +209,7 @@ function CartoWare.Window.new(title)
             function section:AddTextbox(text, placeholder, callback)
                 local frame = createElement("Frame", section.Container, {
                     Name = "TextBox",
-                    BackgroundColor3 = CartoWare.Theme.Element,
+                    BackgroundColor3 = ShadowDarkness.Theme.Element,
                     Size = UDim2.new(1, 0, 0, 25),
                     BorderSizePixel = 0
                 })
@@ -214,7 +219,7 @@ function CartoWare.Window.new(title)
                     Size = UDim2.new(0, 150, 1, 0),
                     Font = Enum.Font.Code,
                     Text = text,
-                    TextColor3 = CartoWare.Theme.Text,
+                    TextColor3 = ShadowDarkness.Theme.Text,
                     TextSize = 12,
                     BackgroundTransparency = 1
                 })
@@ -226,7 +231,7 @@ function CartoWare.Window.new(title)
                     Font = Enum.Font.Code,
                     PlaceholderText = placeholder,
                     Text = "",
-                    TextColor3 = CartoWare.Theme.Text,
+                    TextColor3 = ShadowDarkness.Theme.Text,
                     TextSize = 12,
                     BorderSizePixel = 0
                 })
@@ -239,7 +244,7 @@ function CartoWare.Window.new(title)
             function section:AddToggle(text, default, callback)
                 local frame = createElement("Frame", section.Container, {
                     Name = "Toggle",
-                    BackgroundColor3 = CartoWare.Theme.Element,
+                    BackgroundColor3 = ShadowDarkness.Theme.Element,
                     Size = UDim2.new(1, 0, 0, 25),
                     BorderSizePixel = 0
                 })
@@ -249,32 +254,56 @@ function CartoWare.Window.new(title)
                     Size = UDim2.new(0, 150, 1, 0),
                     Font = Enum.Font.Code,
                     Text = text,
-                    TextColor3 = CartoWare.Theme.Text,
+                    TextColor3 = ShadowDarkness.Theme.Text,
                     TextSize = 12,
                     BackgroundTransparency = 1
                 })
                 local button = createElement("TextButton", frame, {
                     Name = "Button",
-                    BackgroundColor3 = default and CartoWare.AccentColor or Color3.fromRGB(60, 60, 60),
+                    BackgroundColor3 = default and ShadowDarkness.AccentColor or Color3.fromRGB(60, 60, 60),
                     Position = UDim2.new(1, -30, 0.5, -10),
                     Size = UDim2.new(0, 20, 0, 20),
                     Font = Enum.Font.Code,
                     Text = "",
-                    TextColor3 = CartoWare.Theme.Text,
+                    TextColor3 = ShadowDarkness.Theme.Text,
                     TextSize = 12,
                     BorderSizePixel = 0
                 })
                 local value = default
                 button.MouseButton1Click:Connect(function()
-    value = not value
-    button.BackgroundColor3 = value and CartoWare.AccentColor or Color3.fromRGB(60, 60, 60)
-    if callback then callback(value) end
-end)
-return frame
+                    value = not value
+                    button.BackgroundColor3 = value and ShadowDarkness.AccentColor or Color3.fromRGB(60, 60, 60)
+                    if callback then callback(value) end
+                end)
+                return frame
+            end
+
+            return section
+        end
+
+        return tab
+    end
+
+    
+    local dragging, dragStart, startPos
+    self.TopBar.InputBegan:Connect(function(inp)
+        if inp.UserInputType == Enum.UserInputType.MouseButton1 or inp.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = inp.Position
+            startPos = self.MainFrame.Position
+            inp.Changed:Connect(function()
+                if inp.UserInputState == Enum.UserInputState.End then dragging = false end
+            end)
+        end
+    end)
+    UserInputService.InputChanged:Connect(function(inp)
+        if dragging and (inp.UserInputType == Enum.UserInputType.MouseMovement or inp.UserInputType == Enum.UserInputType.Touch) then
+            local delta = inp.Position - dragStart
+            local pos = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+            TweenService:Create(self.MainFrame, TweenInfo.new(0.25), {Position = pos}):Play()
+        end
+    end)
+
+    return self
 end
-return section
-end
-return tab
-end
-return self
-end
+return ShadowDarkness
